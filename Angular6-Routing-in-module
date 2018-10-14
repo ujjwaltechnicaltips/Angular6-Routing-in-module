@@ -1,0 +1,57 @@
+Nav.Module.ts
+----------------------------------------------
+
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule} from '@angular/router'
+import { HomeComponent } from '../home/home.component';
+import { AboutComponent } from '../about/about.component';
+
+
+@NgModule({
+  imports: [
+    CommonModule,RouterModule.forRoot(
+      [
+        {path:'Home',component:HomeComponent},
+        {path:'About',component:AboutComponent}
+      ])
+  ],
+
+  exports: [RouterModule],
+  declarations: [ HomeComponent,AboutComponent]
+})
+export class NavModule { }
+
+
+
+
+-----------------------------------------------------
+app.component.html
+
+<nav>
+<a routerLink="/Home">Home</a>
+<a routerLink="/About">About</a>
+</nav>
+
+<router-outlet></router-outlet>
+
+-----------------------------------------------------
+app.Module.ts
+----------------------------------------------
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { AppComponent } from './app.component';
+import { NavModule } from './nav/nav.module';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,NavModule,
+     
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
